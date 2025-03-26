@@ -1,6 +1,10 @@
-# SkyRats Project
-
+<div align="center">
+  <h1>SkyRats</h1>
+<img src="https://github.com/user-attachments/assets/2f13590d-a6e6-4c0c-a2f3-32da2cdcbe4d" alt="Skyrats Logo Banner" width="90%">
+  <p width="75%">
 The SkyRats project is designed to manage and handle specific entity spawning events in Minecraft. It identifies certain entities and executes predefined actions on them, such as killing them in a most horrible fashion.
+</p>
+</div>
 
 ## Project Structure
 
