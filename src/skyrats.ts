@@ -20,14 +20,11 @@ interface ISkyRatTypes {
 export default class SkyRatsManager {
   // Manages the execution of commands triggered
   // by entity spawning events
-  dimension: Dimension | null;
   skyratTypeFactory: ISkyRatTypeFactory[];
   skyratTypes: ISkyRatTypes[];
 
 /**
  * Constructs an instance of the class.
- * 
- * Initializes the `dimension` property to `null`.
  * 
  * Sets up the `skyratTypeFactory` property with predefined entity types to be removed.
  * 
@@ -35,8 +32,6 @@ export default class SkyRatsManager {
  * combining the namespace and type into a single string for each entity type.
  */
   constructor() {
-    this.dimension = null;
-
     // Entity types to be yeeten into the sun and/or void
     this.skyratTypeFactory = [
       {
@@ -94,6 +89,9 @@ export default class SkyRatsManager {
         this.skyratTypes.push({ skyratTypes: [`${factory.namespace}:${type}`] });
       }
     }
+
+    // Bind the handler to preserve this context
+    this.skyratsHandler = this.skyratsHandler.bind(this);
   }
 
 /**
@@ -103,11 +101,21 @@ export default class SkyRatsManager {
  * @param event - The event triggered after an entity spawns.
  */
   skyratsHandler(event: EntitySpawnAfterEvent) {
+    if (!event || !event.entity) {
+      console.warn("SkyRats - Received invalid event or entity");
+      return;
+    }
+    
     let entityId = event.entity.typeId;
-    if (this.skyratTypes.some((type) => type.skyratTypes.includes(entityId))) {
-          this.executeSkyRat(event);
-        }
-      }
+    if (!entityId) {
+      console.warn("SkyRats - Entity has no typeId");
+      return;
+    }
+
+    if (this.skyratTypes && this.skyratTypes.some((type) => type.skyratTypes.includes(entityId))) {
+      this.executeSkyRat(event);
+    }
+  }
 
 /**
  * Executes the SkyRat event by teleporting the entity to a specific location and then killing it.

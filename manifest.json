@@ -2,12 +2,12 @@
 	"format_version": 2,
 	"header": {
 		"name": "Skyrats",
-		"description": "[v§51.0.1§r] by §4§lDJ Stomp§r <discord.stomp.zone>",
+		"description": "[v§51.0.3§r] by §4§lDJ Stomp§r <discord.stomp.zone>",
 		"uuid": "1ebda19d-f06b-400d-9689-16f26b297120",
 		"version": [
 			1,
 			0,
-			1
+			3
 		],
 		"min_engine_version": [
 			1,
@@ -23,7 +23,7 @@
 			"version": [
 				1,
 				0,
-				1
+				3
 			],
 			"entry": "scripts/main.js"
 		}

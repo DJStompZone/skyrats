@@ -7,15 +7,12 @@ export default class SkyRatsManager {
     /**
      * Constructs an instance of the class.
      *
-     * Initializes the `dimension` property to `null`.
-     *
      * Sets up the `skyratTypeFactory` property with predefined entity types to be removed.
      *
      * Constructs the `skyratTypes` list by iterating over the `skyratTypeFactory` and
      * combining the namespace and type into a single string for each entity type.
      */
     constructor() {
-        this.dimension = null;
         // Entity types to be yeeten into the sun and/or void
         this.skyratTypeFactory = [
             {
@@ -72,6 +69,8 @@ export default class SkyRatsManager {
                 this.skyratTypes.push({ skyratTypes: [`${factory.namespace}:${type}`] });
             }
         }
+        // Bind the handler to preserve this context
+        this.skyratsHandler = this.skyratsHandler.bind(this);
     }
     /**
      * Handles the spawning of entities and checks if the spawned entity is a SkyRat.
@@ -80,8 +79,16 @@ export default class SkyRatsManager {
      * @param event - The event triggered after an entity spawns.
      */
     skyratsHandler(event) {
+        if (!event || !event.entity) {
+            console.warn("SkyRats - Received invalid event or entity");
+            return;
+        }
         let entityId = event.entity.typeId;
-        if (this.skyratTypes.some((type) => type.skyratTypes.includes(entityId))) {
+        if (!entityId) {
+            console.warn("SkyRats - Entity has no typeId");
+            return;
+        }
+        if (this.skyratTypes && this.skyratTypes.some((type) => type.skyratTypes.includes(entityId))) {
             this.executeSkyRat(event);
         }
     }
