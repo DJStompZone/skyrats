@@ -1,0 +1,26 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Skyrats",
+    "description": "[v§51.0.0§r] by §4§lDJ Stomp§r <discord.stomp.zone>",
+    "uuid": "1ebda19d-f06b-400d-9689-16f26b297120",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 21, 50]
+  },
+  "modules": [
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "af261101-698b-4d27-88be-fbd16b3283d0",
+      "version": [1, 0, 0],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.0.0-beta"
+    }
+  ],
+  "capabilities": ["script_eval"]
+}

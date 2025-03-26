@@ -1,0 +1,26 @@
+{
+  "name": "skyrats_mc",
+  "version": "1.0.0",
+  "main": "build.js",
+  "scripts": {
+    "build": "tsc",
+    "package": "node build.js",
+    "bundle": "npm run build && npm run package",
+    "release": "npm run build && node build.js --bump",
+    "release:minor": "npm run build && node build.js --bump --minor",
+    "release:major": "npm run build && node build.js --bump --major"
+  },
+  "keywords": [],
+  "author": "DJ Stomp <85457381+DJStompZone@users.noreply.github.com> (https://stomp.zone/)",
+  "license": "MIT",
+  "description": "Culling of unwanted mobs in Minecraft Bedrock Edition", 
+  "dependencies": {
+    "@minecraft/creator-tools": "^0.8.0",
+    "@minecraft/server": "^1.7.0",
+    "@minecraft/vanilla-data": "^1.21.62",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1"
+  }
+}
